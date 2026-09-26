@@ -128,3 +128,89 @@
   }
 
 }
+/* Priority Badge */
+
+.priority-badge {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+/* Low Priority */
+
+.priority-badge.low {
+  color: #15803d;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+/* Medium Priority */
+
+.priority-badge.medium {
+  color: #b45309;
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+/* High Priority */
+
+.priority-badge.high {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+
+/* Status Badge */
+
+.status-badge {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+/* Pending */
+
+.status-badge.pending {
+  color: #b45309;
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+/* In Progress */
+
+.status-badge.in-progress {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+/* Resolved */
+
+.status-badge.resolved {
+  color: #15803d;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+/* Rejected */
+
+.status-badge.rejected {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}

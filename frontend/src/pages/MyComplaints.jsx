@@ -176,45 +176,56 @@ function MyComplaints() {
               </thead>
 
 
-              <tbody>
 
-                {complaints.map((complaint) => (
+<tbody>
 
-                  <tr key={complaint.id}>
+  {complaints.map((complaint) => (
 
-                    <td>
-                      {complaint.title}
-                    </td>
+    <tr key={complaint.id}>
 
-                    <td>
-                      {complaint.Category?.name}
-                    </td>
+      <td>
+        {complaint.title}
+      </td>
 
-                    <td>
-                      {complaint.priority}
-                    </td>
+      <td>
+        {complaint.Category?.name}
+      </td>
 
-                    <td>
-                      {complaint.status}
-                    </td>
+      <td>
+        <span
+          className={`priority-badge ${complaint.priority?.toLowerCase()}`}
+        >
+          {complaint.priority}
+        </span>
+      </td>
 
-                    <td>
+      <td>
+        <span
+          className={`status-badge ${
+            complaint.status?.toLowerCase().replace(" ", "-")
+          }`}
+        >
+          {complaint.status}
+        </span>
+      </td>
 
-                      <button
-                        onClick={() =>
-                          navigate(`/complaint/${complaint.id}`)
-                        }
-                      >
-                        View
-                      </button>
+      <td>
+        <button
+          onClick={() =>
+            navigate(`/complaint/${complaint.id}`)
+          }
+        >
+          View
+        </button>
+      </td>
 
-                    </td>
+    </tr>
 
-                  </tr>
+  ))}
 
-                ))}
+</tbody>
 
-              </tbody>
+
 
             </table>
 
