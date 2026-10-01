@@ -19,7 +19,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/login", (req, res) => {
   res.send("Campus Complaint Management Backend is Running!");
 });
 
