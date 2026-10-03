@@ -1,5 +1,6 @@
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
+const mysql2 = require("mysql2");
 
 let sslCA;
 
@@ -25,6 +26,9 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT || 3306),
     dialect: "mysql",
+
+    // Explicitly provide mysql2 to Sequelize
+    dialectModule: mysql2,
 
     dialectOptions: {
       ssl: {
