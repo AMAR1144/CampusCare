@@ -1,4 +1,21 @@
 const { Sequelize } = require("sequelize");
+const fs = require("fs");
+
+let sslCA;
+
+if (process.env.DB_SSL_CA_BASE64) {
+  // Vercel / production
+  sslCA = Buffer.from(
+    process.env.DB_SSL_CA_BASE64,
+    "base64"
+  ).toString("utf8");
+} else {
+  // Local development
+  sslCA = fs.readFileSync(
+    "C:/Users/91932/Downloads/ca.pem",
+    "utf8"
+  );
+}
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -8,13 +25,13 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT || 3306),
     dialect: "mysql",
+
     dialectOptions: {
       ssl: {
-        ca: require("fs").readFileSync(
-          process.env.DB_SSL_CA || "C:/Users/91932/Downloads/ca.pem"
-        )
+        ca: sslCA
       }
     },
+
     logging: false
   }
 );
