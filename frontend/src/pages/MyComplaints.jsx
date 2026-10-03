@@ -24,10 +24,11 @@ function MyComplaints() {
 
       try {
 
-        const studentId = localStorage.getItem("studentId");
+        const studentId =
+          localStorage.getItem("studentId");
 
         const response = await fetch(
-          `http://localhost:3000/api/complaints/my-complaints?user_id=${studentId}`
+          `${import.meta.env.VITE_API_URL}/api/complaints/my-complaints?user_id=${studentId}`
         );
 
         const data = await response.json();
@@ -69,23 +70,38 @@ function MyComplaints() {
       {/* Sidebar */}
 
       <div className="sidebar">
-            <div className="sidebar-logo"> 
-                <img src={logo} alt="CampusCare Logo" /> 
-            </div>
-        <h2>CampusCare</h2>
 
-        <p>Complaint Management System</p>
+        <div className="sidebar-logo">
+
+          <img
+            src={logo}
+            alt="CampusCare Logo"
+          />
+
+        </div>
+
+        <h2>
+          CampusCare
+        </h2>
+
+        <p>
+          Complaint Management System
+        </p>
 
 
         <button
-          onClick={() => navigate("/student-dashboard")}
+          onClick={() =>
+            navigate("/student-dashboard")
+          }
         >
           Dashboard
         </button>
 
 
         <button
-          onClick={() => navigate("/my-complaints")}
+          onClick={() =>
+            navigate("/my-complaints")
+          }
         >
           My Complaints
         </button>
@@ -93,7 +109,9 @@ function MyComplaints() {
 
         <div className="user-section">
 
-          <p>Student</p>
+          <p>
+            Student
+          </p>
 
           <button onClick={logout}>
             Logout
@@ -113,7 +131,9 @@ function MyComplaints() {
 
           <div>
 
-            <h1>My Complaints</h1>
+            <h1>
+              My Complaints
+            </h1>
 
             <p>
               Here you can view and track all your complaints.
@@ -124,7 +144,9 @@ function MyComplaints() {
 
           <button
             className="submit-button"
-            onClick={() => navigate("/submit-complaint")}
+            onClick={() =>
+              navigate("/submit-complaint")
+            }
           >
             + Submit a Complaint
           </button>
@@ -139,13 +161,17 @@ function MyComplaints() {
 
           {loading ? (
 
-            <p>Loading complaints...</p>
+            <p>
+              Loading complaints...
+            </p>
 
           ) : complaints.length === 0 ? (
 
             <div className="no-complaints">
 
-              <h3>No Complaints Found</h3>
+              <h3>
+                No Complaints Found
+              </h3>
 
               <p>
                 You have not submitted any complaints yet.
@@ -161,71 +187,88 @@ function MyComplaints() {
 
                 <tr>
 
-                  <th>Complaint</th>
+                  <th>
+                    Complaint
+                  </th>
 
-                  <th>Category</th>
+                  <th>
+                    Category
+                  </th>
 
-                  <th>Priority</th>
+                  <th>
+                    Priority
+                  </th>
 
-                  <th>Status</th>
+                  <th>
+                    Status
+                  </th>
 
-                  <th>Action</th>
+                  <th>
+                    Action
+                  </th>
 
                 </tr>
 
               </thead>
 
 
+              <tbody>
 
-<tbody>
+                {complaints.map((complaint) => (
 
-  {complaints.map((complaint) => (
+                  <tr key={complaint.id}>
 
-    <tr key={complaint.id}>
+                    <td>
+                      {complaint.title}
+                    </td>
 
-      <td>
-        {complaint.title}
-      </td>
+                    <td>
+                      {complaint.Category?.name}
+                    </td>
 
-      <td>
-        {complaint.Category?.name}
-      </td>
+                    <td>
 
-      <td>
-        <span
-          className={`priority-badge ${complaint.priority?.toLowerCase()}`}
-        >
-          {complaint.priority}
-        </span>
-      </td>
+                      <span
+                        className={`priority-badge ${complaint.priority?.toLowerCase()}`}
+                      >
+                        {complaint.priority}
+                      </span>
 
-      <td>
-        <span
-          className={`status-badge ${
-            complaint.status?.toLowerCase().replace(" ", "-")
-          }`}
-        >
-          {complaint.status}
-        </span>
-      </td>
+                    </td>
 
-      <td>
-        <button
-          onClick={() =>
-            navigate(`/complaint/${complaint.id}`)
-          }
-        >
-          View
-        </button>
-      </td>
+                    <td>
 
-    </tr>
+                      <span
+                        className={`status-badge ${
+                          complaint.status
+                            ?.toLowerCase()
+                            .replace(" ", "-")
+                        }`}
+                      >
+                        {complaint.status}
+                      </span>
 
-  ))}
+                    </td>
 
-</tbody>
+                    <td>
 
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/complaint/${complaint.id}`
+                          )
+                        }
+                      >
+                        View
+                      </button>
 
+                    </td>
+
+                  </tr>
+
+                ))}
+
+              </tbody>
 
             </table>
 

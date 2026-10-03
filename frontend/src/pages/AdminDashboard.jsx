@@ -25,51 +25,57 @@ function AdminDashboard() {
 
   const [categories, setCategories] = useState([]);
 
-const updateStatus = async (complaintId, newStatus) => {
 
-  try {
+  // Update complaint status
+  const updateStatus = async (complaintId, newStatus) => {
 
-    const response = await fetch(
-      `http://localhost:3000/api/complaints/${complaintId}/status`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          status: newStatus
-        })
+    try {
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/complaints/${complaintId}/status`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            status: newStatus
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+
+        alert(data.message || "Failed to update status");
+
+        return;
+
       }
-    );
 
-    const data = await response.json();
+      // Update the complaint in the frontend
+      setComplaints((previousComplaints) =>
+        previousComplaints.map((complaint) =>
+          complaint.id === complaintId
+            ? {
+                ...complaint,
+                status: newStatus
+              }
+            : complaint
+        )
+      );
 
-    if (!response.ok) {
-      alert(data.message || "Failed to update status");
-      return;
+    } catch (error) {
+
+      console.error("Status update error:", error);
+
+      alert("Unable to connect to backend server.");
+
     }
 
-    // Update the complaint in the frontend
-    setComplaints((previousComplaints) =>
-      previousComplaints.map((complaint) =>
-        complaint.id === complaintId
-          ? {
-              ...complaint,
-              status: newStatus
-            }
-          : complaint
-      )
-    );
+  };
 
-  } catch (error) {
-
-    console.error("Status update error:", error);
-
-    alert("Unable to connect to backend server.");
-
-  }
-
-};
 
   useEffect(() => {
 
@@ -85,14 +91,17 @@ const updateStatus = async (complaintId, newStatus) => {
     try {
 
       setLoading(true);
+
       setError("");
 
       const response = await fetch(
-        "http://localhost:3000/api/complaints"
+        `${import.meta.env.VITE_API_URL}/api/complaints`
       );
 
       if (!response.ok) {
+
         throw new Error("Failed to fetch complaints");
+
       }
 
       const data = await response.json();
@@ -122,11 +131,13 @@ const updateStatus = async (complaintId, newStatus) => {
     try {
 
       const response = await fetch(
-        "http://localhost:3000/api/categories"
+        `${import.meta.env.VITE_API_URL}/api/categories`
       );
 
       if (!response.ok) {
+
         throw new Error("Failed to fetch categories");
+
       }
 
       const data = await response.json();
@@ -149,25 +160,22 @@ const updateStatus = async (complaintId, newStatus) => {
 
     const searchText = search.toLowerCase();
 
-    const matchesSearch = 
-    item.title?.toLowerCase().includes(searchText) || 
-    item.User?.name?.toLowerCase().includes(searchText) || 
-    item.Category?.name?.toLowerCase().includes(searchText);
+    const matchesSearch =
+      item.title?.toLowerCase().includes(searchText) ||
+      item.User?.name?.toLowerCase().includes(searchText) ||
+      item.Category?.name?.toLowerCase().includes(searchText);
 
     const matchesStatus =
       statusFilter === "All Status" ||
       item.status === statusFilter;
 
-
-    const matchesCategory = 
-    categoryFilter === "All Categories" || 
-    item.Category?.name === categoryFilter;
-
+    const matchesCategory =
+      categoryFilter === "All Categories" ||
+      item.Category?.name === categoryFilter;
 
     const matchesPriority =
       priorityFilter === "All Priorities" ||
       item.priority === priorityFilter;
-
 
     return (
       matchesSearch &&
@@ -241,10 +249,16 @@ const updateStatus = async (complaintId, newStatus) => {
           >
             Dashboard
           </button>
-          <button onClick={() => navigate("/manage-users")}>
+
+          <button
+            onClick={() => navigate("/manage-users")}
+          >
             Manage Users
           </button>
+
         </nav>
+
+
         <div className="sidebar-footer">
 
           <div className="user-profile">
@@ -287,15 +301,16 @@ const updateStatus = async (complaintId, newStatus) => {
         <header className="main-header">
 
           <div>
+
             <h1>
               Admin Dashboard
             </h1>
+
             <p>
               Manage and monitor campus complaints.
             </p>
+
           </div>
-
-
 
         </header>
 
@@ -606,39 +621,51 @@ const updateStatus = async (complaintId, newStatus) => {
                     <td>
                       {item.priority}
                     </td>
-<td>
-  <select
-    value={item.status}
-    onChange={(e) =>
-      updateStatus(item.id, e.target.value)
-    }
-    className={`status-select ${item.status
-      ?.toLowerCase()
-      .replace(" ", "-")}`}
-  >
-    <option value="Pending">
-      Pending
-    </option>
 
-    <option value="In Progress">
-      In Progress
-    </option>
+                    <td>
 
-    <option value="Resolved">
-      Resolved
-    </option>
+                      <select
+                        value={item.status}
+                        onChange={(e) =>
+                          updateStatus(
+                            item.id,
+                            e.target.value
+                          )
+                        }
+                        className={`status-select ${item.status
+                          ?.toLowerCase()
+                          .replace(" ", "-")}`}
+                      >
 
-    <option value="Rejected">
-      Rejected
-    </option>
-  </select>
-</td>
+                        <option value="Pending">
+                          Pending
+                        </option>
+
+                        <option value="In Progress">
+                          In Progress
+                        </option>
+
+                        <option value="Resolved">
+                          Resolved
+                        </option>
+
+                        <option value="Rejected">
+                          Rejected
+                        </option>
+
+                      </select>
+
+                    </td>
 
                     <td>
 
                       <button
                         className="btn-view"
-                        onClick={() => navigate(`/complaint/${item.id}?from=admin`)}
+                        onClick={() =>
+                          navigate(
+                            `/complaint/${item.id}?from=admin`
+                          )
+                        }
                       >
                         View
                       </button>

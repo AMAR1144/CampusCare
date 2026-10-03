@@ -29,13 +29,15 @@ function ManageUsers() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:3000/api/users"
+        `${import.meta.env.VITE_API_URL}/api/users`
       );
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to fetch users");
+        throw new Error(
+          data.message || "Failed to fetch users"
+        );
       }
 
       console.log("Users:", data);
@@ -44,9 +46,14 @@ function ManageUsers() {
 
     } catch (error) {
 
-      console.error("Fetch users error:", error);
+      console.error(
+        "Fetch users error:",
+        error
+      );
 
-      alert("Unable to connect to backend server.");
+      alert(
+        "Unable to connect to backend server."
+      );
 
     } finally {
 
@@ -59,7 +66,9 @@ function ManageUsers() {
 
   // LOAD USERS
   useEffect(() => {
+
     fetchUsers();
+
   }, []);
 
 
@@ -79,6 +88,7 @@ function ManageUsers() {
   const handleAddUser = () => {
 
     clearForm();
+
     setShowForm(true);
 
   };
@@ -106,47 +116,64 @@ function ManageUsers() {
 
     try {
 
-      let url = "http://localhost:3000/api/users";
+      let url =
+        `${import.meta.env.VITE_API_URL}/api/users`;
+
       let method = "POST";
+
 
       if (editingUser) {
 
-        url = `http://localhost:3000/api/users/${editingUser.id}`;
+        url =
+          `${import.meta.env.VITE_API_URL}/api/users/${editingUser.id}`;
+
         method = "PUT";
 
       }
 
-      const response = await fetch(url, {
 
-        method: method,
+      const response = await fetch(
+        url,
+        {
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+          method: method,
 
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          password
-        })
+          headers: {
+            "Content-Type": "application/json"
+          },
 
-      });
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            password
+          })
+
+        }
+      );
+
 
       const data = await response.json();
 
+
       if (!response.ok) {
 
-        alert(data.message || "Operation failed");
+        alert(
+          data.message ||
+          "Operation failed"
+        );
+
         return;
 
       }
+
 
       alert(
         editingUser
           ? "User updated successfully"
           : "User created successfully"
       );
+
 
       setShowForm(false);
 
@@ -156,9 +183,14 @@ function ManageUsers() {
 
     } catch (error) {
 
-      console.error("Save user error:", error);
+      console.error(
+        "Save user error:",
+        error
+      );
 
-      alert("Unable to connect to backend server.");
+      alert(
+        "Unable to connect to backend server."
+      );
 
     }
 
@@ -172,37 +204,55 @@ function ManageUsers() {
       "Are you sure you want to delete this user?"
     );
 
+
     if (!confirmDelete) {
+
       return;
+
     }
+
 
     try {
 
       const response = await fetch(
-        `http://localhost:3000/api/users/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/users/${id}`,
         {
           method: "DELETE"
         }
       );
 
+
       const data = await response.json();
+
 
       if (!response.ok) {
 
-        alert(data.message || "Failed to delete user");
+        alert(
+          data.message ||
+          "Failed to delete user"
+        );
+
         return;
 
       }
 
-      alert("User deleted successfully");
+
+      alert(
+        "User deleted successfully"
+      );
 
       fetchUsers();
 
     } catch (error) {
 
-      console.error("Delete user error:", error);
+      console.error(
+        "Delete user error:",
+        error
+      );
 
-      alert("Unable to connect to backend server.");
+      alert(
+        "Unable to connect to backend server."
+      );
 
     }
 
@@ -212,12 +262,24 @@ function ManageUsers() {
   // SEARCH USERS
   const filteredUsers = users.filter((user) => {
 
-    const searchText = search.toLowerCase();
+    const searchText =
+      search.toLowerCase();
+
 
     return (
-      user.name?.toLowerCase().includes(searchText) ||
-      user.email?.toLowerCase().includes(searchText) ||
-      user.phone?.toLowerCase().includes(searchText)
+
+      user.name
+        ?.toLowerCase()
+        .includes(searchText) ||
+
+      user.email
+        ?.toLowerCase()
+        .includes(searchText) ||
+
+      user.phone
+        ?.toLowerCase()
+        .includes(searchText)
+
     );
 
   });
@@ -265,7 +327,9 @@ function ManageUsers() {
         <nav className="nav-menu">
 
           <button
-            onClick={() => navigate("/admin-dashboard")}
+            onClick={() =>
+              navigate("/admin-dashboard")
+            }
           >
             Dashboard
           </button>
@@ -273,7 +337,9 @@ function ManageUsers() {
 
           <button
             className="active"
-            onClick={() => navigate("/manage-users")}
+            onClick={() =>
+              navigate("/manage-users")
+            }
           >
             Manage Users
           </button>
@@ -290,6 +356,7 @@ function ManageUsers() {
             <div className="avatar">
               AD
             </div>
+
 
             <div>
 
@@ -473,7 +540,9 @@ function ManageUsers() {
                         <button
                           className="delete-btn"
                           onClick={() =>
-                            handleDeleteUser(user.id)
+                            handleDeleteUser(
+                              user.id
+                            )
                           }
                         >
                           Delete
@@ -514,7 +583,9 @@ function ManageUsers() {
               </h2>
 
 
-              <form onSubmit={handleSubmit}>
+              <form
+                onSubmit={handleSubmit}
+              >
 
 
                 <div className="form-group">
@@ -573,9 +644,11 @@ function ManageUsers() {
                 <div className="form-group">
 
                   <label>
+
                     {editingUser
                       ? "New Password"
                       : "Password"}
+
                   </label>
 
                   <input
@@ -596,9 +669,11 @@ function ManageUsers() {
                     type="submit"
                     className="save-btn"
                   >
+
                     {editingUser
                       ? "Update User"
                       : "Create User"}
+
                   </button>
 
 
@@ -606,8 +681,11 @@ function ManageUsers() {
                     type="button"
                     className="cancel-btn"
                     onClick={() => {
+
                       setShowForm(false);
+
                       clearForm();
+
                     }}
                   >
                     Cancel
@@ -633,4 +711,3 @@ function ManageUsers() {
 }
 
 export default ManageUsers;
-

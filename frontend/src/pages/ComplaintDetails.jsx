@@ -7,10 +7,12 @@ function ComplaintDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [searchParams] = useSearchParams(); 
+  const [searchParams] = useSearchParams();
   const from = searchParams.get("from");
+
   const [complaint, setComplaint] = useState(null);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
 
@@ -19,25 +21,31 @@ function ComplaintDetails() {
       try {
 
         const response = await fetch(
-          `http://localhost:3000/api/complaints/${id}`
+          `${import.meta.env.VITE_API_URL}/api/complaints/${id}`
         );
 
         const data = await response.json();
 
         if (response.ok) {
+
           setComplaint(data);
+
         } else {
+
           alert("Complaint not found");
+
         }
 
       } catch (error) {
 
         console.log("Error:", error);
+
         alert("Failed to load complaint");
 
       }
 
       setLoading(false);
+
     };
 
     getComplaint();
@@ -46,12 +54,16 @@ function ComplaintDetails() {
 
 
   if (loading) {
+
     return <p>Loading complaint...</p>;
+
   }
 
 
   if (!complaint) {
+
     return <p>Complaint not found.</p>;
+
   }
 
 
@@ -67,7 +79,10 @@ function ComplaintDetails() {
         <div className="detail">
 
           <label>Complaint Title</label>
-          <p>{complaint.title}</p>
+
+          <p>
+            {complaint.title}
+          </p>
 
         </div>
 
@@ -75,7 +90,10 @@ function ComplaintDetails() {
         <div className="detail">
 
           <label>Category</label>
-          <p>{complaint.Category?.name}</p>
+
+          <p>
+            {complaint.Category?.name}
+          </p>
 
         </div>
 
@@ -83,7 +101,10 @@ function ComplaintDetails() {
         <div className="detail">
 
           <label>Priority</label>
-          <p>{complaint.priority}</p>
+
+          <p>
+            {complaint.priority}
+          </p>
 
         </div>
 
@@ -91,7 +112,10 @@ function ComplaintDetails() {
         <div className="detail">
 
           <label>Status</label>
-          <p>{complaint.status}</p>
+
+          <p>
+            {complaint.status}
+          </p>
 
         </div>
 
@@ -99,19 +123,25 @@ function ComplaintDetails() {
         <div className="detail">
 
           <label>Description</label>
-          <p>{complaint.description}</p>
+
+          <p>
+            {complaint.description}
+          </p>
 
         </div>
 
 
-
-<button
-  onClick={() =>
-    navigate(from === "admin" ? "/admin-dashboard" : "/student-dashboard")
-  }
->
-  Back to Dashboard
-</button>
+        <button
+          onClick={() =>
+            navigate(
+              from === "admin"
+                ? "/admin-dashboard"
+                : "/student-dashboard"
+            )
+          }
+        >
+          Back to Dashboard
+        </button>
 
 
       </div>
@@ -119,6 +149,7 @@ function ComplaintDetails() {
     </div>
 
   );
+
 }
 
 export default ComplaintDetails;

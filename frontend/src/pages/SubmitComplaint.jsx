@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SubmitComplaint.css";
@@ -13,61 +12,62 @@ function SubmitComplaint() {
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
 
-useEffect(() => {
-  const getCategories = async () => {
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/categories`
+      );
+
+      const data = await response.json();
+      setCategories(data);
+    };
+
+    getCategories();
+
+  }, []);
+
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    const studentId = localStorage.getItem("studentId");
+
     const response = await fetch(
-      "http://localhost:3000/api/categories"
+      `${import.meta.env.VITE_API_URL}/api/complaints`,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          user_id: studentId,
+          category_id: category,
+          title: complaint,
+          description: description,
+          priority: priority
+        })
+      }
     );
+
     const data = await response.json();
-    setCategories(data);
-  };
 
-  getCategories();
+    console.log(data);
 
-}, []);
+    if (response.ok) {
 
+      alert("Complaint submitted successfully!");
 
-const handleSubmit = async (e) => {
+      navigate("/student-dashboard");
 
-  e.preventDefault();
+    } else {
 
-  const studentId = localStorage.getItem("studentId");
+      alert("Failed to submit complaint");
 
-  const response = await fetch(
-    "http://localhost:3000/api/complaints",
-    {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        user_id: studentId,
-        category_id: category,
-        title: complaint,
-        description: description,
-        priority: priority
-      })
     }
-  );
-
-  const data = await response.json();
-
-  console.log(data);
-
-  if (response.ok) {
-
-    alert("Complaint submitted successfully!");
-
-    navigate("/student-dashboard");
-
-  } else {
-
-    alert("Failed to submit complaint");
-
-  }
-};
+  };
 
 
   return (
@@ -106,14 +106,15 @@ const handleSubmit = async (e) => {
               onChange={(e) => setCategory(e.target.value)}
               required
             >
-                <option value="">Select Category</option>
-                {categories.map((cat) => (
+              <option value="">Select Category</option>
+
+              {categories.map((cat) => (
 
                 <option key={cat.id} value={cat.id}>
-                    {cat.name}
+                  {cat.name}
                 </option>
 
-                ))}
+              ))}
 
             </select>
 
@@ -173,7 +174,13 @@ const handleSubmit = async (e) => {
               Submit Complaint
             </button>
 
-            <button type="button" className="back-btn" onClick={() => navigate("/student-dashboard")}>Back</button>
+            <button
+              type="button"
+              className="back-btn"
+              onClick={() => navigate("/student-dashboard")}
+            >
+              Back
+            </button>
 
           </div>
 

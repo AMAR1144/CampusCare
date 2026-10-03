@@ -6,6 +6,7 @@ import logo from "../assets/ccms-logo.png";
 function StudentDashboard() {
 
   const navigate = useNavigate();
+
   const [studentName, setStudentName] = useState("");
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,52 +14,75 @@ function StudentDashboard() {
 
   // Get complaints from backend
   useEffect(() => {
-    
+
     const getComplaints = async () => {
 
       try {
-        
-        const studentId = localStorage.getItem("studentId"); 
-        const response = await fetch( `http://localhost:3000/api/complaints/my-complaints?user_id=${studentId}` );
+
+        const studentId =
+          localStorage.getItem("studentId");
+
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/complaints/my-complaints?user_id=${studentId}`
+        );
 
         const data = await response.json();
-        console.log("Complaints received:", JSON.stringify(data, null, 2));
+
+        console.log(
+          "Complaints received:",
+          JSON.stringify(data, null, 2)
+        );
+
         if (response.ok) {
+
           setComplaints(data);
+
         }
 
       } catch (error) {
 
-        console.log("Error:", error);
+        console.log(
+          "Error:",
+          error
+        );
 
       }
 
       setLoading(false);
+
     };
+
 
     getComplaints();
 
-    const name = localStorage.getItem("studentName");
-  setStudentName(name);
+
+    const name =
+      localStorage.getItem("studentName");
+
+    setStudentName(name);
 
   }, []);
 
-  
+
   // Calculate numbers
   const total = complaints.length;
 
   const pending = complaints.filter(
-    (complaint) => complaint.status === "Pending"
+    (complaint) =>
+      complaint.status === "Pending"
   ).length;
 
   const resolved = complaints.filter(
-    (complaint) => complaint.status === "Resolved"
+    (complaint) =>
+      complaint.status === "Resolved"
   ).length;
 
 
   // Logout
   const logout = () => {
+
     navigate("/login");
+
   };
 
 
@@ -66,27 +90,55 @@ function StudentDashboard() {
 
     <div className="dashboard">
 
+
       {/* Sidebar */}
 
       <div className="sidebar">
 
-        <div className="sidebar-logo"> 
-          <img src={logo} alt="CampusCare Logo" /> 
+        <div className="sidebar-logo">
+
+          <img
+            src={logo}
+            alt="CampusCare Logo"
+          />
+
         </div>
 
-        <h2>CampusCare</h2>
 
-        <p>Complaint Management System</p>
-
-
-            <button onClick={() => navigate("/student-dashboard")}>Dashboard</button>
+        <h2>
+          CampusCare
+        </h2>
 
 
-        <button onClick={() => navigate("/my-complaints")}>My Complaints</button>
+        <p>
+          Complaint Management System
+        </p>
+
+
+        <button
+          onClick={() =>
+            navigate("/student-dashboard")
+          }
+        >
+          Dashboard
+        </button>
+
+
+        <button
+          onClick={() =>
+            navigate("/my-complaints")
+          }
+        >
+          My Complaints
+        </button>
+
 
         <div className="user-section">
 
-          <p>Student</p>
+          <p>
+            Student
+          </p>
+
 
           <button onClick={logout}>
             Logout
@@ -101,7 +153,10 @@ function StudentDashboard() {
 
       <div className="main-content">
 
-        <h1>Welcome, {studentName}</h1>
+        <h1>
+          Welcome, {studentName}
+        </h1>
+
 
         <p>
           Here's an overview of your complaints.
@@ -112,105 +167,178 @@ function StudentDashboard() {
 
         <div className="cards">
 
+
           <div className="card">
 
-            <h3>Total Complaints</h3>
+            <h3>
+              Total Complaints
+            </h3>
 
-            <h2>{total}</h2>
+            <h2>
+              {total}
+            </h2>
 
           </div>
 
 
           <div className="card">
 
-            <h3>Pending</h3>
+            <h3>
+              Pending
+            </h3>
 
-            <h2>{pending}</h2>
+            <h2>
+              {pending}
+            </h2>
 
           </div>
 
 
           <div className="card">
 
-            <h3>Resolved</h3>
+            <h3>
+              Resolved
+            </h3>
 
-            <h2>{resolved}</h2>
+            <h2>
+              {resolved}
+            </h2>
 
           </div>
+
 
         </div>
 
 
         {/* Submit Complaint */}
 
-        <button className="submit-button" onClick={()=>navigate("/submit-complaint")}>
+        <button
+          className="submit-button"
+          onClick={() =>
+            navigate("/submit-complaint")
+          }
+        >
           + Submit a Complaint
         </button>
+
 
         {/* Complaints */}
 
         <div className="complaints">
 
-          <h2>Recent Complaints</h2>
+          <h2>
+            Recent Complaints
+          </h2>
 
 
           {loading ? (
 
-            <p>Loading complaints...</p>
+            <p>
+              Loading complaints...
+            </p>
 
           ) : complaints.length === 0 ? (
 
-            <p>No complaints found.</p>
+            <p>
+              No complaints found.
+            </p>
 
           ) : (
 
             <table>
+
               <thead>
+
                 <tr>
-                  <th>Complaint</th>
-                  <th>Category</th>
-                  <th>Priority</th>
-                  <th>Status</th>
-                  <th>Action</th>
+
+                  <th>
+                    Complaint
+                  </th>
+
+                  <th>
+                    Category
+                  </th>
+
+                  <th>
+                    Priority
+                  </th>
+
+                  <th>
+                    Status
+                  </th>
+
+                  <th>
+                    Action
+                  </th>
+
                 </tr>
+
               </thead>
 
-          <tbody>
-            {complaints.slice(0, 4).map((complaint) => (
-              <tr key={complaint.id}>
-                <td>
-                  {complaint.title}
-                </td>
-                <td>
-                  {complaint.Category?.name}
-                </td>
 
-<td>
-  <span className={`priority-badge ${complaint.priority?.toLowerCase()}`}>
-    {complaint.priority}
-  </span>
-</td>
+              <tbody>
 
-<td>
-  <span
-    className={`status-badge ${
-      complaint.status?.toLowerCase().replace(" ", "-")
-    }`}
-  >
-    {complaint.status}
-  </span>
-</td>
+                {complaints
+                  .slice(0, 4)
+                  .map((complaint) => (
+
+                    <tr key={complaint.id}>
+
+                      <td>
+                        {complaint.title}
+                      </td>
 
 
-                <td>
-                  <button onClick={() => navigate(`/complaint/${complaint.id}`)}>View</button>
-                </td>
-              </tr>
+                      <td>
+                        {complaint.Category?.name}
+                      </td>
 
-            ))}
 
-          </tbody>
+                      <td>
 
+                        <span
+                          className={`priority-badge ${complaint.priority?.toLowerCase()}`}
+                        >
+                          {complaint.priority}
+                        </span>
+
+                      </td>
+
+
+                      <td>
+
+                        <span
+                          className={`status-badge ${
+                            complaint.status
+                              ?.toLowerCase()
+                              .replace(" ", "-")
+                          }`}
+                        >
+                          {complaint.status}
+                        </span>
+
+                      </td>
+
+
+                      <td>
+
+                        <button
+                          onClick={() =>
+                            navigate(
+                              `/complaint/${complaint.id}`
+                            )
+                          }
+                        >
+                          View
+                        </button>
+
+                      </td>
+
+                    </tr>
+
+                  ))}
+
+              </tbody>
 
             </table>
 
@@ -223,6 +351,7 @@ function StudentDashboard() {
     </div>
 
   );
+
 }
 
 export default StudentDashboard;
