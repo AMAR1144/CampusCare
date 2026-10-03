@@ -1,38 +1,54 @@
+/* =========================
+   CORE RESET & FONTS
+========================= */
 
-/* Core Reset & Fonts */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0 !important;
-  padding: 0 !important;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+
   color: #1e293b;
   background-color: #f8fafc;
+
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dashboard Layout */
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
 .dashboard {
   display: flex;
-  min-height: 100vh;
+
   width: 100%;
+  min-height: 100vh;
+
   margin: 0;
   padding: 0;
 }
 
-/* Sidebar */
+
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar {
   width: 260px;
   min-width: 260px;
   min-height: 100vh;
+
   flex-shrink: 0;
 
   background-color: #1e293b;
@@ -44,7 +60,11 @@ body {
   flex-direction: column;
 }
 
-/* Logo */
+
+/* =========================
+   LOGO
+========================= */
+
 .sidebar-logo {
   width: 100%;
   height: 90px;
@@ -57,48 +77,66 @@ body {
 }
 
 .sidebar-logo img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 
   object-fit: contain;
   display: block;
 }
 
-/* Sidebar Title */
+
+/* =========================
+   SIDEBAR TITLE
+========================= */
+
 .sidebar h2 {
   margin: 0;
+
   text-align: center;
-  
+
   font-size: 25px;
   font-weight: 700;
+
   letter-spacing: -0.5px;
 
   color: #ffffff;
 }
 
-/* Sidebar Description */
+
+/* =========================
+   SIDEBAR DESCRIPTION
+========================= */
+
 .sidebar > p {
   text-align: center;
 
   font-size: 13px;
   color: #94a3b8;
 
-  margin: 4px 0 32px 0;
+  margin: 4px 0 32px;
 }
 
-/* Sidebar Navigation */
+
+/* =========================
+   SIDEBAR NAVIGATION
+========================= */
+
 .sidebar nav {
   display: flex;
   flex-direction: column;
+
   gap: 6px;
 }
 
+
 /* Sidebar Buttons */
+
 .sidebar button {
   display: flex;
   align-items: center;
 
   width: 100%;
+
   padding: 11px 14px;
 
   border: none;
@@ -108,27 +146,40 @@ body {
 
   font-size: 14px;
   font-weight: 500;
+
   text-align: left;
 
   cursor: pointer;
+
   border-radius: 8px;
 
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .sidebar button:hover {
   background-color: rgba(255, 255, 255, 0.08);
+
   color: #ffffff;
 }
 
-/* Active Navigation Button */
+
+/* Active Navigation */
+
 .sidebar button.active {
   background-color: #334155;
+
   color: #ffffff;
+
   font-weight: 600;
 }
 
-/* Sidebar User Section */
+
+/* =========================
+   SIDEBAR USER SECTION
+========================= */
+
 .user-section {
   margin-top: auto;
 
@@ -141,6 +192,7 @@ body {
   font-size: 12px;
 
   text-transform: uppercase;
+
   letter-spacing: 0.5px;
 
   color: #94a3b8;
@@ -148,18 +200,29 @@ body {
   margin-bottom: 12px;
 }
 
-/* Main Content Area */
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
 .main-content {
   flex: 1;
+
+  width: 100%;
+  min-width: 0;
 
   padding: 40px 48px;
 
   max-width: 1400px;
 }
 
-/* Main Heading */
+
+/* =========================
+   MAIN HEADING
+========================= */
+
 .main-content h1 {
-  margin: 0 0 6px 0;
+  margin: 0 0 6px;
 
   font-size: 28px;
   font-weight: 700;
@@ -174,10 +237,14 @@ body {
 
   font-size: 15px;
 
-  margin: 0 0 32px 0;
+  margin: 0 0 32px;
 }
 
-/* Metric Cards */
+
+/* =========================
+   METRIC CARDS
+========================= */
+
 .cards {
   display: grid;
 
@@ -200,7 +267,8 @@ body {
 
   border: 1px solid #e2e8f0;
 
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04);
 
   transition:
     transform 0.2s ease,
@@ -215,12 +283,13 @@ body {
 }
 
 .card h3 {
-  margin: 0 0 8px 0;
+  margin: 0 0 8px;
 
   font-size: 13px;
   font-weight: 600;
 
   text-transform: uppercase;
+
   letter-spacing: 0.5px;
 
   color: #64748b;
@@ -235,10 +304,17 @@ body {
   color: #0f172a;
 }
 
-/* Submit Complaint Button */
+
+/* =========================
+   SUBMIT COMPLAINT BUTTON
+========================= */
+
 .submit-button {
   display: inline-flex;
+
   align-items: center;
+
+  justify-content: center;
 
   gap: 8px;
 
@@ -252,6 +328,7 @@ body {
   font-weight: 600;
 
   border: none;
+
   border-radius: 8px;
 
   cursor: pointer;
@@ -274,8 +351,14 @@ body {
   transform: scale(0.98);
 }
 
-/* Complaints Container */
+
+/* =========================
+   COMPLAINTS CONTAINER
+========================= */
+
 .complaints {
+  width: 100%;
+
   background-color: #ffffff;
 
   padding: 28px;
@@ -286,10 +369,14 @@ body {
 
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.04);
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 .complaints h2 {
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
 
   font-size: 18px;
   font-weight: 700;
@@ -297,13 +384,20 @@ body {
   color: #0f172a;
 }
 
-/* Table */
-table {
+
+/* =========================
+   TABLE
+========================= */
+
+.complaints table {
   width: 100%;
+
+  min-width: 750px;
+
   border-collapse: collapse;
 }
 
-th {
+.complaints th {
   background-color: #f8fafc;
 
   color: #475569;
@@ -312,6 +406,7 @@ th {
   font-weight: 600;
 
   text-transform: uppercase;
+
   letter-spacing: 0.5px;
 
   text-align: left;
@@ -319,9 +414,11 @@ th {
   padding: 12px 16px;
 
   border-bottom: 1px solid #e2e8f0;
+
+  white-space: nowrap;
 }
 
-td {
+.complaints td {
   padding: 16px;
 
   border-bottom: 1px solid #f1f5f9;
@@ -329,18 +426,24 @@ td {
   color: #334155;
 
   font-size: 14px;
+
+  white-space: nowrap;
 }
 
-tr:last-child td {
+.complaints tr:last-child td {
   border-bottom: none;
 }
 
-tr:hover td {
+.complaints tbody tr:hover td {
   background-color: #f8fafc;
 }
 
-/* Table View Button */
-td button {
+
+/* =========================
+   TABLE VIEW BUTTON
+========================= */
+
+.complaints td button {
   padding: 6px 14px;
 
   border: 1px solid #cbd5e1;
@@ -356,10 +459,15 @@ td button {
   font-size: 13px;
   font-weight: 500;
 
-  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-td button:hover {
+.complaints td button:hover {
   background-color: #f1f5f9;
 
   border-color: #94a3b8;
@@ -367,30 +475,10 @@ td button:hover {
   color: #0f172a;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
 
-  .dashboard {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    min-width: 100%;
-    min-height: auto;
-  }
-
-  .main-content {
-    padding: 20px;
-  }
-
-  .complaints {
-    overflow-x: auto;
-  }
-}
-
-
-/* Priority Badge */
+/* =========================
+   PRIORITY BADGE
+========================= */
 
 .priority-badge {
   display: inline-block;
@@ -403,34 +491,47 @@ td button:hover {
   font-weight: 600;
 
   text-align: center;
+
+  white-space: nowrap;
 }
 
-/* Low Priority */
+
+/* Low */
 
 .priority-badge.low {
   color: #15803d;
+
   background-color: #f0fdf4;
+
   border: 1px solid #bbf7d0;
 }
 
-/* Medium Priority */
+
+/* Medium */
 
 .priority-badge.medium {
   color: #b45309;
+
   background-color: #fff7ed;
+
   border: 1px solid #fed7aa;
 }
 
-/* High Priority */
+
+/* High */
 
 .priority-badge.high {
   color: #b91c1c;
+
   background-color: #fef2f2;
+
   border: 1px solid #fecaca;
 }
 
 
-/* Status Badge */
+/* =========================
+   STATUS BADGE
+========================= */
 
 .status-badge {
   display: inline-block;
@@ -443,36 +544,535 @@ td button:hover {
   font-weight: 600;
 
   text-align: center;
+
+  white-space: nowrap;
 }
+
 
 /* Pending */
 
 .status-badge.pending {
   color: #b45309;
+
   background-color: #fff7ed;
+
   border: 1px solid #fed7aa;
 }
+
 
 /* In Progress */
 
 .status-badge.in-progress {
   color: #1d4ed8;
+
   background-color: #eff6ff;
+
   border: 1px solid #bfdbfe;
 }
+
 
 /* Resolved */
 
 .status-badge.resolved {
   color: #15803d;
+
   background-color: #f0fdf4;
+
   border: 1px solid #bbf7d0;
 }
+
 
 /* Rejected */
 
 .status-badge.rejected {
   color: #b91c1c;
+
   background-color: #fef2f2;
+
   border: 1px solid #fecaca;
+}
+
+
+/* =========================================================
+   LARGE TABLET
+   1000px AND BELOW
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .sidebar {
+    width: 230px;
+    min-width: 230px;
+
+    padding: 22px 16px;
+  }
+
+  .sidebar-logo img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .sidebar h2 {
+    font-size: 22px;
+  }
+
+  .main-content {
+    padding: 30px;
+  }
+
+  .cards {
+    gap: 15px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   768px AND BELOW
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .dashboard {
+    flex-direction: column;
+  }
+
+
+  /* Sidebar becomes top section */
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    min-height: auto;
+
+    padding: 18px 15px;
+  }
+
+  .sidebar-logo {
+    height: 70px;
+  }
+
+  .sidebar-logo img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sidebar h2 {
+    font-size: 22px;
+  }
+
+  .sidebar > p {
+    margin-bottom: 18px;
+  }
+
+
+  /* Navigation becomes grid */
+
+  .sidebar nav {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 6px;
+  }
+
+  .sidebar button {
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 10px 8px;
+
+    font-size: 13px;
+  }
+
+
+  /* User section */
+
+  .user-section {
+    margin-top: 18px;
+  }
+
+
+  /* Main */
+
+  .main-content {
+    width: 100%;
+
+    padding: 25px 20px;
+
+    max-width: none;
+  }
+
+
+  /* Heading */
+
+  .main-content h1 {
+    font-size: 25px;
+  }
+
+  .main-content > p {
+    font-size: 14px;
+
+    margin-bottom: 25px;
+  }
+
+
+  /* Cards */
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h2 {
+    font-size: 28px;
+  }
+
+
+  /* Submit */
+
+  .submit-button {
+    margin-bottom: 25px;
+  }
+
+
+  /* Complaints */
+
+  .complaints {
+    padding: 20px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   600px AND BELOW
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .sidebar {
+    padding: 15px 12px;
+  }
+
+  .sidebar-logo {
+    height: 60px;
+  }
+
+  .sidebar-logo img {
+    width: 85px;
+    height: 85px;
+  }
+
+  .sidebar h2 {
+    font-size: 20px;
+  }
+
+  .sidebar > p {
+    font-size: 12px;
+
+    margin-bottom: 15px;
+  }
+
+
+  /* Navigation */
+
+  .sidebar nav {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar button {
+    justify-content: flex-start;
+
+    text-align: left;
+
+    padding: 9px 12px;
+  }
+
+
+  /* Main */
+
+  .main-content {
+    padding: 15px 12px;
+  }
+
+  .main-content h1 {
+    font-size: 22px;
+  }
+
+  .main-content > p {
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+  }
+
+
+  /* Cards */
+
+  .cards {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h3 {
+    font-size: 12px;
+  }
+
+  .card h2 {
+    font-size: 27px;
+  }
+
+
+  /* Submit button */
+
+  .submit-button {
+    width: 100%;
+
+    padding: 11px;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+  }
+
+
+  /* Complaints */
+
+  .complaints {
+    padding: 15px;
+
+    border-radius: 9px;
+  }
+
+  .complaints h2 {
+    font-size: 17px;
+
+    margin-bottom: 15px;
+  }
+
+
+  /* Table */
+
+  .complaints table {
+    min-width: 700px;
+  }
+
+  .complaints th {
+    padding: 10px 12px;
+
+    font-size: 11px;
+  }
+
+  .complaints td {
+    padding: 12px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   500px AND BELOW
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .main-content {
+    padding: 12px 10px;
+  }
+
+  .main-content h1 {
+    font-size: 20px;
+  }
+
+  .main-content > p {
+    font-size: 12px;
+  }
+
+
+  /* Cards */
+
+  .card {
+    padding: 16px;
+  }
+
+  .card h3 {
+    font-size: 11px;
+  }
+
+  .card h2 {
+    font-size: 25px;
+  }
+
+
+  /* Complaints */
+
+  .complaints {
+    padding: 12px;
+  }
+
+  .complaints h2 {
+    font-size: 16px;
+  }
+
+
+  /* Table */
+
+  .complaints table {
+    min-width: 650px;
+  }
+
+  .complaints th {
+    padding: 9px 10px;
+
+    font-size: 10px;
+  }
+
+  .complaints td {
+    padding: 10px;
+
+    font-size: 12px;
+  }
+
+
+  /* Badges */
+
+  .priority-badge,
+  .status-badge {
+    padding: 4px 8px;
+
+    font-size: 11px;
+  }
+
+
+  /* View button */
+
+  .complaints td button {
+    padding: 6px 10px;
+
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   360px AND BELOW
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .sidebar {
+    padding: 12px 10px;
+  }
+
+  .sidebar h2 {
+    font-size: 18px;
+  }
+
+  .sidebar > p {
+    font-size: 11px;
+  }
+
+  .main-content {
+    padding: 10px 8px;
+  }
+
+  .main-content h1 {
+    font-size: 19px;
+  }
+
+  .main-content > p {
+    font-size: 11px;
+  }
+
+
+  /* Cards */
+
+  .card {
+    padding: 14px;
+  }
+
+  .card h2 {
+    font-size: 23px;
+  }
+
+
+  /* Button */
+
+  .submit-button {
+    font-size: 12px;
+
+    padding: 10px;
+  }
+
+
+  /* Complaints */
+
+  .complaints {
+    padding: 10px;
+  }
+
+  .complaints h2 {
+    font-size: 15px;
+  }
+
+  .complaints table {
+    min-width: 620px;
+  }
+}
+
+
+/* =========================================================
+   SHORT SCREENS / LANDSCAPE PHONES
+========================================================= */
+
+@media (max-height: 600px) and (max-width: 768px) {
+
+  .sidebar-logo {
+    height: 45px;
+  }
+
+  .sidebar-logo img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .sidebar h2 {
+    font-size: 18px;
+  }
+
+  .sidebar > p {
+    margin-bottom: 10px;
+  }
+
+  .sidebar button {
+    padding: 7px 10px;
+  }
+
+  .user-section {
+    margin-top: 12px;
+  }
 }

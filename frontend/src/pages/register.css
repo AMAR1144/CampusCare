@@ -1,63 +1,93 @@
+
+/* =========================
+   GLOBAL RESET
+========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Full Page & Viewport Centering */
+
+/* =========================
+   PAGE
+========================= */
+
 html,
 body {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 body {
   background-color: #f8fafc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Register Container */
+
+/* =========================
+   REGISTER CONTAINER
+========================= */
+
 .register-container {
-  width: 100%; 
-  min-height: 100vh; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px 20px;
 }
 
-/* Register Card */
+
+/* =========================
+   REGISTER CARD
+========================= */
+
 .register-card {
   width: 100%;
   max-width: 420px;
+
   background: #ffffff;
+
   padding: 36px 32px;
+
   border-radius: 12px;
   border: 1px solid #e2e8f0;
+
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
-/* Logo */
+
+/* =========================
+   LOGO
+========================= */
+
 .sidebar-logo {
   display: flex;
   justify-content: center;
   align-items: center;
+
   margin-bottom: 16px;
 }
 
 .sidebar-logo img {
   width: 100px;
   height: 100px;
+
   object-fit: contain;
   display: block;
 }
 
-/* Header */
+
+/* =========================
+   HEADER / BRAND
+========================= */
+
 .brand {
   text-align: center;
   margin-bottom: 24px;
@@ -67,16 +97,23 @@ body {
   color: #0f172a;
   font-size: 24px;
   font-weight: 700;
+
   margin-bottom: 6px;
+
   letter-spacing: -0.5px;
 }
 
 .brand p {
   color: #64748b;
   font-size: 14px;
+  line-height: 1.5;
 }
 
-/* Form Styles */
+
+/* =========================
+   FORM
+========================= */
+
 .register-form {
   display: flex;
   flex-direction: column;
@@ -86,51 +123,77 @@ body {
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .form-group label {
   font-size: 13px;
   font-weight: 600;
   color: #334155;
-  margin-bottom: 0;
 }
 
 .form-group input {
+  width: 100%;
+
   padding: 10px 12px;
+
   border: 1px solid #cbd5e1;
   border-radius: 8px;
+
   font-size: 14px;
   color: #0f172a;
+
   outline: none;
-  transition: all 0.2s ease;
+
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
 .form-group input:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-/* Action Buttons Container */
+
+/* =========================
+   BUTTON GROUP
+========================= */
+
 .button-group {
   display: flex;
   align-items: center;
+
   gap: 12px;
+
   margin-top: 10px;
 }
 
-/* Submit Button */
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
 .btn-submit {
   flex: 1;
+
   padding: 11px 16px;
+
   background-color: #0f68e3;
   color: #ffffff;
+
   border: none;
   border-radius: 8px;
+
   font-size: 14px;
   font-weight: 600;
+
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 .btn-submit:hover {
@@ -141,21 +204,37 @@ body {
   transform: scale(0.98);
 }
 
-/* Back Button */
+
+/* =========================
+   BACK BUTTON
+========================= */
+
 .btn-back {
   flex: 1;
+
   padding: 11px 16px;
+
   background-color: #ffffff;
   color: #64748b;
+
   border: 1px solid #cbd5e1;
   border-radius: 8px;
+
   font-size: 14px;
   font-weight: 600;
+
   text-align: center;
   text-decoration: none;
+
   display: inline-block;
+
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 .btn-back:hover {
@@ -166,4 +245,211 @@ body {
 
 .btn-back:active {
   transform: scale(0.98);
+}
+
+
+/* =========================================================
+   TABLET
+   701px - 1000px
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .register-container {
+    padding: 25px 20px;
+  }
+
+  .register-card {
+    max-width: 420px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   700px AND BELOW
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .register-container {
+    min-height: 100vh;
+
+    padding: 25px 15px;
+
+    align-items: center;
+  }
+
+  .register-card {
+    max-width: 100%;
+
+    padding: 30px 24px;
+
+    border-radius: 10px;
+  }
+
+  .sidebar-logo img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .brand {
+    margin-bottom: 22px;
+  }
+
+  .brand h2 {
+    font-size: 22px;
+  }
+
+  .brand p {
+    font-size: 13px;
+  }
+
+  .register-form {
+    gap: 13px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   500px AND BELOW
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .register-container {
+    padding: 15px 10px;
+
+    /* Allows scrolling if form becomes taller */
+    align-items: flex-start;
+  }
+
+  .register-card {
+    margin: 15px 0;
+
+    padding: 25px 18px;
+
+    border-radius: 9px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 12px;
+  }
+
+  .sidebar-logo img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .brand {
+    margin-bottom: 20px;
+  }
+
+  .brand h2 {
+    font-size: 21px;
+  }
+
+  .brand p {
+    font-size: 13px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+  }
+
+  .form-group input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .button-group {
+    gap: 8px;
+  }
+
+  .btn-submit,
+  .btn-back {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   360px AND BELOW
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .register-container {
+    padding: 10px 8px;
+  }
+
+  .register-card {
+    margin: 10px 0;
+    padding: 22px 15px;
+  }
+
+  .sidebar-logo img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .brand h2 {
+    font-size: 19px;
+  }
+
+  .brand p {
+    font-size: 12px;
+  }
+
+  .register-form {
+    gap: 12px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-submit,
+  .btn-back {
+    width: 100%;
+    flex: none;
+  }
+}
+
+
+/* =========================================================
+   VERY SHORT SCREENS
+   Prevents vertical clipping
+========================================================= */
+
+@media (max-height: 650px) {
+
+  .register-container {
+    align-items: flex-start;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .register-card {
+    margin: 0;
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 8px;
+  }
+
+  .sidebar-logo img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .brand {
+    margin-bottom: 15px;
+  }
 }

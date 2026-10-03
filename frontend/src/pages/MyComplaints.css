@@ -1,25 +1,35 @@
+/* =========================
+   MY COMPLAINTS PAGE
+========================= */
+
 .my-complaints-page {
   min-height: 100vh;
   background: #f4f6f9;
   padding: 40px;
+  box-sizing: border-box;
 }
 
 .my-complaints-box {
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   background: white;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 
-/* Header */
+/* =========================
+   HEADER
+========================= */
 
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   margin-bottom: 30px;
 }
 
@@ -30,12 +40,15 @@
 }
 
 .page-header p {
-  margin-top: 8px;
+  margin: 8px 0 0;
   color: #666;
+  font-size: 14px;
 }
 
 
-/* Submit Button */
+/* =========================
+   SUBMIT BUTTON
+========================= */
 
 .page-header button {
   padding: 11px 18px;
@@ -44,6 +57,8 @@
   background: #1e3a5f;
   color: white;
   cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .page-header button:hover {
@@ -51,14 +66,24 @@
 }
 
 
-/* Table */
+/* =========================
+   TABLE CONTAINER
+========================= */
 
 .complaints-table {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
+
+/* =========================
+   TABLE
+========================= */
 
 .complaints-table table {
   width: 100%;
+  min-width: 750px;
   border-collapse: collapse;
 }
 
@@ -68,16 +93,28 @@
   background: #f4f6f9;
   color: #1e3a5f;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .complaints-table td {
   padding: 15px 14px;
   border-bottom: 1px solid #e5e7eb;
   font-size: 14px;
+  color: #334155;
+  white-space: nowrap;
 }
 
 
-/* View Button */
+/* Row Hover */
+
+.complaints-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* =========================
+   VIEW BUTTON
+========================= */
 
 .complaints-table td button {
   padding: 7px 13px;
@@ -86,6 +123,8 @@
   background: #e3edf7;
   color: #1e3a5f;
   cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .complaints-table td button:hover {
@@ -93,7 +132,9 @@
 }
 
 
-/* Empty State */
+/* =========================
+   EMPTY STATE
+========================= */
 
 .no-complaints {
   text-align: center;
@@ -102,46 +143,29 @@
 
 .no-complaints h3 {
   color: #1e3a5f;
+  margin-bottom: 8px;
 }
 
 .no-complaints p {
   color: #666;
+  margin: 0;
 }
 
 
-/* Mobile */
-
-@media (max-width: 700px) {
-
-  .my-complaints-page {
-    padding: 20px;
-  }
-
-  .my-complaints-box {
-    padding: 20px;
-  }
-
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-}
-/* Priority Badge */
+/* =========================
+   PRIORITY BADGE
+========================= */
 
 .priority-badge {
   display: inline-block;
-
   padding: 5px 10px;
-
   border-radius: 6px;
-
   font-size: 12px;
   font-weight: 600;
-
   text-align: center;
+  white-space: nowrap;
 }
+
 
 /* Low Priority */
 
@@ -151,6 +175,7 @@
   border: 1px solid #bbf7d0;
 }
 
+
 /* Medium Priority */
 
 .priority-badge.medium {
@@ -158,6 +183,7 @@
   background-color: #fff7ed;
   border: 1px solid #fed7aa;
 }
+
 
 /* High Priority */
 
@@ -168,20 +194,20 @@
 }
 
 
-/* Status Badge */
+/* =========================
+   STATUS BADGE
+========================= */
 
 .status-badge {
   display: inline-block;
-
   padding: 5px 10px;
-
   border-radius: 6px;
-
   font-size: 12px;
   font-weight: 600;
-
   text-align: center;
+  white-space: nowrap;
 }
+
 
 /* Pending */
 
@@ -191,6 +217,7 @@
   border: 1px solid #fed7aa;
 }
 
+
 /* In Progress */
 
 .status-badge.in-progress {
@@ -198,6 +225,7 @@
   background-color: #eff6ff;
   border: 1px solid #bfdbfe;
 }
+
 
 /* Resolved */
 
@@ -207,10 +235,232 @@
   border: 1px solid #bbf7d0;
 }
 
+
 /* Rejected */
 
 .status-badge.rejected {
   color: #b91c1c;
   background-color: #fef2f2;
   border: 1px solid #fecaca;
+}
+
+
+/* =========================================================
+   TABLET
+   701px - 1000px
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .my-complaints-page {
+    padding: 30px;
+  }
+
+  .my-complaints-box {
+    padding: 25px;
+  }
+
+  .page-header h1 {
+    font-size: 25px;
+  }
+
+  .complaints-table table {
+    min-width: 700px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   700px AND BELOW
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .my-complaints-page {
+    padding: 20px;
+  }
+
+  .my-complaints-box {
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+
+  /* Header */
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+  }
+
+
+  /* Submit button */
+
+  .page-header button {
+    width: 100%;
+    padding: 11px;
+  }
+
+
+  /* Table */
+
+  .complaints-table table {
+    min-width: 700px;
+  }
+
+  .complaints-table th {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .complaints-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+
+  /* Empty state */
+
+  .no-complaints {
+    padding: 40px 15px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   500px AND BELOW
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .my-complaints-page {
+    padding: 10px;
+  }
+
+  .my-complaints-box {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+
+  /* Header */
+
+  .page-header {
+    gap: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 21px;
+  }
+
+  .page-header p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+
+  /* Submit */
+
+  .page-header button {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+
+  /* Table */
+
+  .complaints-table {
+    margin: 0;
+  }
+
+  .complaints-table table {
+    min-width: 650px;
+  }
+
+  .complaints-table th {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .complaints-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+
+  /* Badges */
+
+  .priority-badge,
+  .status-badge {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+
+  /* View button */
+
+  .complaints-table td button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+
+  /* Empty */
+
+  .no-complaints {
+    padding: 35px 10px;
+  }
+
+  .no-complaints h3 {
+    font-size: 18px;
+  }
+
+  .no-complaints p {
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   360px AND BELOW
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .my-complaints-page {
+    padding: 8px;
+  }
+
+  .my-complaints-box {
+    padding: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 19px;
+  }
+
+  .page-header p {
+    font-size: 12px;
+  }
+
+  .page-header button {
+    font-size: 12px;
+  }
+
+  .complaints-table table {
+    min-width: 620px;
+  }
 }

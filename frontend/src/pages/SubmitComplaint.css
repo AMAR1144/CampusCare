@@ -1,83 +1,289 @@
-
+/* Submit Complaint Page */
 .submit-page {
   min-height: 100vh;
+  width: 100%;
+
   background-color: #f4f6f9;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 30px;
+
+  box-sizing: border-box;
 }
 
+/* Submit Form Box */
 .submit-box {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
+
   background-color: white;
+
   padding: 30px;
+
   border-radius: 8px;
+
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  box-sizing: border-box;
 }
 
+/* Heading */
 .submit-box h1 {
   color: #1e3a5f;
-  margin-bottom: 5px;
+
+  margin: 0 0 5px 0;
+
+  font-size: 28px;
 }
 
+/* Description */
 .submit-box p {
   color: #666;
-  margin-bottom: 25px;
+
+  margin: 0 0 25px 0;
+
+  font-size: 15px;
+
+  line-height: 1.5;
 }
 
+/* Form Group */
 .form-group {
   margin-bottom: 20px;
 }
 
+/* Labels */
 .form-group label {
   display: block;
+
   margin-bottom: 8px;
+
   font-weight: bold;
+
+  color: #333;
+
+  font-size: 14px;
 }
 
+/* Inputs */
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
+
   padding: 10px;
+
   border: 1px solid #ccc;
+
   border-radius: 5px;
+
   box-sizing: border-box;
+
   font-size: 15px;
+
+  font-family: inherit;
+
+  outline: none;
 }
 
+/* Focus Effect */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #1e3a5f;
+
+  box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.1);
+}
+
+/* Textarea */
 .form-group textarea {
   resize: vertical;
+
+  min-height: 120px;
 }
 
+/* Buttons */
 .button-group {
   display: flex;
+
   gap: 10px;
+
+  width: 100%;
 }
 
+/* Submit Button */
 .submit-btn {
   padding: 12px 20px;
-  background-color: #1e3a5f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
-.back-btn {
-  padding: 12px 20px;
-  background-color: #ddd;
-  color: #333;
+  background-color: #1e3a5f;
+
+  color: white;
+
   border: none;
+
   border-radius: 5px;
+
   cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition: background-color 0.2s ease;
 }
 
 .submit-btn:hover {
   background-color: #2d527d;
 }
 
+/* Back Button */
+.back-btn {
+  padding: 12px 20px;
+
+  background-color: #ddd;
+
+  color: #333;
+
+  border: none;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition: background-color 0.2s ease;
+}
+
 .back-btn:hover {
   background-color: #ccc;
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .submit-page {
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .submit-box {
+    max-width: 600px;
+
+    padding: 25px;
+
+    margin-top: 20px;
+  }
+
+  .submit-box h1 {
+    font-size: 25px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 500px) {
+
+  .submit-page {
+    padding: 15px;
+  }
+
+  .submit-box {
+    padding: 20px;
+
+    border-radius: 7px;
+
+    margin-top: 10px;
+  }
+
+  .submit-box h1 {
+    font-size: 23px;
+  }
+
+  .submit-box p {
+    font-size: 14px;
+
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 14px;
+
+    padding: 10px;
+  }
+
+  .form-group textarea {
+    min-height: 110px;
+  }
+
+  /* Stack buttons on mobile */
+  .button-group {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .submit-btn,
+  .back-btn {
+    width: 100%;
+
+    padding: 12px;
+  }
+}
+
+
+/* =========================
+   SMALL MOBILE
+   ========================= */
+
+@media (max-width: 360px) {
+
+  .submit-page {
+    padding: 10px;
+  }
+
+  .submit-box {
+    padding: 16px;
+  }
+
+  .submit-box h1 {
+    font-size: 21px;
+  }
+
+  .submit-box p {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 13px;
+  }
+
+  .submit-btn,
+  .back-btn {
+    font-size: 13px;
+  }
 }
